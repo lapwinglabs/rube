@@ -2,8 +2,8 @@
   "name": "rube",
   "version": "0.0.2",
   "dependencies": {
-    "lapwinglabs/invalid": "0.0.2",
-    "matthewmueller/step.js": "2.0.3",
+    "lapwinglabs/invalid": "0.0.x",
+    "matthewmueller/step.js": "2.0.x",
     "component/type": "1.0.0",
     "eivindfjeldstad/typecast": "1.0.1"
   }
