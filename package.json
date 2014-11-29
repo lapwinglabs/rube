@@ -1,0 +1,26 @@
+{
+  "name": "rube",
+  "version": "0.0.1",
+  "description": "Simple data validation, transformation, and manipulation pipeline",
+  "keywords": [
+    "transform",
+    "data",
+    "pipeline",
+    "simple"
+  ],
+  "author": "Matthew Mueller <matt@lapwinglabs.com>",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/lapwinglabs/rube.git"
+  },
+  "dependencies": {
+    "invalid": "0.0.2",
+    "step.js": "^2.0.2",
+    "type-component": "0.0.1",
+    "typecast": "0.0.1"
+  },
+  "devDependencies": {
+    "mocha": "*"
+  },
+  "main": "index"
+}
