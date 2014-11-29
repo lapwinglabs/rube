@@ -51,7 +51,7 @@ Rube.plugin = function(name, fn) {
     name = fn.name;
   }
 
-  if (!name) throw new Error('Rube.attach([name], fn) requires a name or fn.name');
+  if (!name) throw new Error('Rube.plugin([name], fn) requires a name or fn.name');
 
   // add the method
   this.prototype[name.toLowerCase()] = function() {
