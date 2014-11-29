@@ -1,7 +1,7 @@
 
 # rube
 
-  Composable data validation, transformation, and manipulation pipelines. Named after the [Rube Goldberg Machine](http://en.wikipedia.org/wiki/Rube_Goldberg_machine).
+  A composable data validation, transformation & manipulation pipeline. Named after the [Rube Goldberg Machine](http://en.wikipedia.org/wiki/Rube_Goldberg_machine).
 
   ![rube goldberg machine](http://upload.wikimedia.org/wikipedia/commons/a/a6/Professor_Lucifer_Butts.gif)
 
