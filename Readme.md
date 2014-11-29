@@ -20,16 +20,15 @@ var phone = Rube()
   .type(/\d{10}/)        // verify we have 10 digits (US phone number)
   .cast(String, Number)  // cast a string to a number
 
-// prettyphone composes phone's rube and adds formatting
+// prettyphone makes a US phone number pretty
 var prettyphone = Rube()
   .use(phone)                                    // compose phone's rube
-  .cast(Number, String)                          // cast Number to a String
-  .format(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3') // format phone number nicely
+  .cast(Number, String)                          // cast a number to a string
+  .format(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3') // format phone number
 
 prettyphone('+(415) 324----5344', function(err, v) {
-  if (err) throw err;
-  console.log(typeof v, v);
-})
+  v // (415) 324-5344
+});
 ```
 
 ## API
