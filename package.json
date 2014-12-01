@@ -1,6 +1,6 @@
 {
   "name": "rube",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Simple data validation, transformation, and manipulation pipeline",
   "keywords": [
     "transform",
