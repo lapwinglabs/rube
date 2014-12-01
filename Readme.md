@@ -79,6 +79,18 @@ var rube = Rube().phone('US');
 rube(1234567890, function(err, v) { ... }) // v is 1234567890
 ```
 
+### Rube.message(message)
+
+Provide a custom message when there is an error. A `message` can be either a string, function, or error.
+
+When `message` is a function, the error is passed through:
+
+```js
+Rube().message(function(err) {
+  return new Error('this was the error: ' + err.message);
+});
+```
+
 ### Bundled Plugins
 
 As you probably noticed, Rube comes bundled with a few plugins off the bat to make things easier.
@@ -153,9 +165,37 @@ var rube = Rube().type(String)
 rube(10, function(err, v)) // err is "10 is not a string"
 ```
 
-## TODO
+#### Rube.assert(assertion)
 
-- More testing
+Assert that the `value` passed through passes the `assertion`. The `assertion` changes based on it's type:
+
+- default: `assert.equal(value, assertion)`
+- regexp: `assert(assertion.test(value))`
+- array or object: `assert.deepEqual(value, assertion)`
+
+#### Rube.between(min, max)
+
+Checks to see if the value is in between `min` and `max`. Between is an *inclusive* range
+
+```js
+Rube()
+  .between(3, 10)
+```
+
+You can use this to specify min's and max's separately:
+
+```js
+Rube()
+  .between(6, Infinity) // min(6)
+  .between(-Infinity, 100) // max(100)
+```
+
+## Tests
+
+```bash
+npm install
+make test
+```
 
 ## License
 
