@@ -23,10 +23,15 @@ function Rube() {
   var pipeline = [];
 
   function rube(actual, fn) {
-    Step(pipeline).run(actual, fn);
+    Step(pipeline).run(actual, function(err, v) {
+      return err
+        ? fn(rube._message(err))
+        : fn(null, v);
+    });
   }
 
   rube._pipeline = pipeline;
+  rube._message = function(err) { return err; }
 
   // add the methods
   for (var k in Rube.prototype) {
@@ -76,6 +81,22 @@ Rube.prototype.use = function(fn) {
   return this;
 };
 
+/**
+ * Add a custom error message
+ *
+ * @param {Mixed} msg
+ * @return {Rube}
+ */
+
+Rube.prototype.message = function(msg) {
+  this._message = 'string' == typeof msg
+    ? function() { return new TypeError(msg); }
+    : msg instanceof Error
+    ? function() { return msg; }
+    : msg;
+
+  return this;
+};
 
 /**
  * Bundled plugins
@@ -83,6 +104,8 @@ Rube.prototype.use = function(fn) {
 
 Rube.plugin(require('./lib/default.js'));
 Rube.plugin(require('./lib/require.js'));
+Rube.plugin(require('./lib/between.js'));
 Rube.plugin(require('./lib/format.js'));
+Rube.plugin(require('./lib/assert.js'));
 Rube.plugin(require('./lib/cast.js'));
 Rube.plugin(require('./lib/type.js'));

@@ -17,7 +17,8 @@
     "invalid": "0.0.2",
     "step.js": "^2.0.5",
     "type-component": "0.0.1",
-    "typecast": "0.0.1"
+    "typecast": "0.0.1",
+    "wrap-fn": "^0.1.1"
   },
   "devDependencies": {
     "mocha": "*"

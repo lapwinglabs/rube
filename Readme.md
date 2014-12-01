@@ -38,7 +38,7 @@ prettyphone('+(415) 324----5344', function(err, v) {
 Initialize `Rube`. Returns a function that can be used to check a given value.
 
 ```js
-var rube = Rube().require().type(isEmail).format('matt', 'brian');
+var rube = Rube().required().type(isEmail).format('matt', 'brian');
 rube('matt@lapwinglabs.com', function(err, v) { ... }) // v is 'brian@lapwinglabs.com'
 ```
 
@@ -135,12 +135,12 @@ var rube = Rube().format(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3');
 rube(1234567890, function(err, v) { ... }) // v is "(123) 456-7890"
 ```
 
-#### Rube#require()
+#### Rube#required()
 
 Ensure that the value is defined.
 
 ```js
-var rube = Rube().require();
+var rube = Rube().required();
 rube(undefined, function(err, v) { ... }) // err is "value must be defined"
 ```
 
