@@ -165,7 +165,7 @@ var rube = Rube().type(String)
 rube(10, function(err, v)) // err is "10 is not a string"
 ```
 
-#### Rube.assert(assertion)
+#### Rube#assert(assertion)
 
 Assert that the `value` passed through passes the `assertion`. The `assertion` changes based on it's type:
 
@@ -173,7 +173,7 @@ Assert that the `value` passed through passes the `assertion`. The `assertion` c
 - regexp: `assert(assertion.test(value))`
 - array or object: `assert.deepEqual(value, assertion)`
 
-#### Rube.between(min, max)
+#### Rube#between(min, max)
 
 Checks to see if the value is in between `min` and `max`. Between is an *inclusive* range
 
