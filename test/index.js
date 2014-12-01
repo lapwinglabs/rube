@@ -155,4 +155,20 @@ describe('rube', function() {
     })
   })
 
+  describe('rube.required()', function() {
+    it('should throw on empty strings', function() {
+      var rube = Rube().required();
+      rube('', function(err, v) {
+        assert.equal(err.message, 'value cannot be blank');
+      });
+    })
+
+    it('should throw on undefined', function() {
+      var rube = Rube().required();
+      rube(undefined, function(err, v) {
+        assert.equal(err.message, 'value must be defined');
+      });
+    })
+  })
+
 })
