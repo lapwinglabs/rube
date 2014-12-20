@@ -1,4 +1,9 @@
 
+0.0.8 / 2014-12-20
+==================
+
+* remove ability to use fn.name with plugins. it doesn't play well with minifiers :-(
+
 0.0.7 / 2014-12-01
 ==================
 
