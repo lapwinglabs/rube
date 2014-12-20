@@ -1,6 +1,6 @@
 {
   "name": "rube",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "dependencies": {
     "lapwinglabs/invalid": "0.0.x",
     "matthewmueller/step.js": "2.0.x",
