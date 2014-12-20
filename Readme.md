@@ -61,12 +61,12 @@ var b = rube();
 var c = rube().use(a).use(b);
 ```
 
-### Rube.plugin([name], fn)
+### Rube.plugin(name, fn)
 
 Attach a custom plugin to all rube instances
 
 ```js
-Rube.plugin(function phone(country) {
+Rube.plugin('phone', function phone(country) {
   return function(value) {
     switch(country) {
       case 'US': return /^\d{10}$/.test(value) ? value : new Error('no good');

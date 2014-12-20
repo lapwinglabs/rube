@@ -56,7 +56,7 @@ Rube.plugin = function(name, fn) {
     name = fn.name;
   }
 
-  if (!name) throw new Error('Rube.plugin([name], fn) requires a name or fn.name');
+  if (!name) throw new Error('Rube.plugin(name, fn) requires a name');
 
   // add the method
   this.prototype[name.toLowerCase()] = function() {
@@ -102,10 +102,10 @@ Rube.prototype.message = function(msg) {
  * Bundled plugins
  */
 
-Rube.plugin(require('./lib/default.js'));
-Rube.plugin(require('./lib/require.js'));
-Rube.plugin(require('./lib/between.js'));
-Rube.plugin(require('./lib/format.js'));
-Rube.plugin(require('./lib/assert.js'));
-Rube.plugin(require('./lib/cast.js'));
-Rube.plugin(require('./lib/type.js'));
+Rube.plugin('default', require('./lib/default.js'));
+Rube.plugin('required', require('./lib/required.js'));
+Rube.plugin('between', require('./lib/between.js'));
+Rube.plugin('format', require('./lib/format.js'));
+Rube.plugin('assert', require('./lib/assert.js'));
+Rube.plugin('cast', require('./lib/cast.js'));
+Rube.plugin('type', require('./lib/type.js'));
