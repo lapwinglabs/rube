@@ -2,7 +2,12 @@
  * Module dependencies
  */
 
+var error = require('./lib/utils/error');
+var type = require('./lib/utils/type');
+var bind = Function.prototype.bind;
+var sliced = require('sliced');
 var Step = require('step.js');
+var Batch = require('batch');
 var noop = function() {};
 
 /**
@@ -12,100 +17,71 @@ var noop = function() {};
 module.exports = Rube;
 
 /**
+ * Types
+ */
+
+var types = {
+  array: require('./lib/array'),
+  number: require('./lib/number'),
+  object: require('./lib/object'),
+  string: require('./lib/string'),
+  any: require('./lib/any')
+};
+
+/**
  * Initialize `Rube`
  *
+ * @param {Mixed} value
  * @return {Rube}
  * @api public
  */
 
 function Rube() {
-  if (!(this instanceof Rube)) return new Rube();
-  var pipeline = [];
+  if (!(this instanceof Rube)) return construct(Rube, sliced(arguments));
+  var args = sliced(arguments);
+  if (args.length <= 1) return initialize(args[0]);
 
-  function rube(actual, fn) {
-    Step(pipeline).run(actual, function(err, v) {
-      return err
-        ? fn(rube._message(err))
-        : fn(null, v);
+  args = args.map(initialize);
+  var len = args.length;
+
+  return function rube(actual, fn) {
+    var batch = Batch().throws(false);
+
+    args.forEach(function(arg) {
+      batch.push(function(next) {
+        arg(actual, next);
+      });
+    });
+
+    batch.end(function(errors, values) {
+      errors = errors.filter(function(err) { return err; });
+      return errors.length == len
+        ? fn(error(errors, actual))
+        : fn(null, actual);
     });
   }
 
-  rube._pipeline = pipeline;
-  rube._message = function(err) { return err; }
+  function initialize(value) {
+    // instanceof itself
+    // TODO: improve?
+    if (value.rube) return value;
 
-  // add the methods
-  for (var k in Rube.prototype) {
-    rube[k] = Rube.prototype[k];
+    switch (type(value)) {
+      case 'string': return types.string(value);
+      case 'number': return types.number(value);
+      case 'object': return types.object(value);
+      case 'array': return types.array(value);
+      default: return types.any(value);
+    }
   }
-
-  return rube;
 }
 
 /**
- * Attach a custom method to Rube instances
- *
- * @param {String} name
- * @param {Function} fn
- * @return {Rube}
- * @api public
+ * Construct
  */
 
-Rube.plugin = function(name, fn) {
-  if (arguments.length == 1) {
-    fn = name;
-    name = fn.name;
-  }
-
-  if (!name) throw new Error('Rube.plugin(name, fn) requires a name');
-
-  // add the method
-  this.prototype[name.toLowerCase()] = function() {
-    var ret = fn.apply(null, arguments);
-    this._pipeline.push(ret || noop);
-    return this;
-  };
-
-  return this;
+function construct(constructor, args) {
+  function F() { return constructor.apply(this, args); }
+  F.prototype = constructor.prototype;
+  return new F();
 }
-
-/**
- * Add a plugin a rube instance
- *
- * @param {Function} fn
- * @return {Rube}
- * @api public
- */
-
-Rube.prototype.use = function(fn) {
-  this._pipeline.push(fn);
-  return this;
-};
-
-/**
- * Add a custom error message
- *
- * @param {Mixed} msg
- * @return {Rube}
- */
-
-Rube.prototype.message = function(msg) {
-  this._message = 'string' == typeof msg
-    ? function() { return new TypeError(msg); }
-    : msg instanceof Error
-    ? function() { return msg; }
-    : msg;
-
-  return this;
-};
-
-/**
- * Bundled plugins
- */
-
-Rube.plugin('default', require('./lib/default.js'));
-Rube.plugin('required', require('./lib/required.js'));
-Rube.plugin('between', require('./lib/between.js'));
-Rube.plugin('format', require('./lib/format.js'));
-Rube.plugin('assert', require('./lib/assert.js'));
-Rube.plugin('cast', require('./lib/cast.js'));
-Rube.plugin('type', require('./lib/type.js'));
