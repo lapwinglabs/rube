@@ -3,7 +3,7 @@
  */
 
 var assert = require('assert');
-var Rube = require('..');
+var Rube = require('../');
 
 /**
  * Regexp

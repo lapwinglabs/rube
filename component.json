@@ -2,7 +2,9 @@
   "name": "rube",
   "version": "0.0.8",
   "dependencies": {
-    "lapwinglabs/invalid": "0.0.x",
+    "tj/batch": "0.5.2",
+    "sindresorhus/dot-prop": "^1.0.0",
+    "aheckmann/sliced": "0.0.5",
     "matthewmueller/step.js": "2.0.x",
     "component/type": "1.0.0",
     "eivindfjeldstad/typecast": "1.0.1",

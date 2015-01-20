@@ -7,31 +7,62 @@
 
 ## Installation
 
+Node:
+
 ```bash
 npm install rube
 ```
 
+Browser (duo):
+
+```
+var Rube = require('lapwinglabs/rube');
+```
+
+Browser (standalone, exports `Rube`):
+
+[dist/rube.js](dist/rube.js)
+
 ## Example
 
 ```js
-// coerce into a phone number and verify
-var phone = Rube()
-  .format(/[^\d]+/g, '') // remove any non-digits
-  .type(/\d{10}/)        // verify we have 10 digits (US phone number)
-  .cast(String, Number)  // cast a string to a number
-
-// prettyphone makes a US phone number pretty
-var prettyphone = Rube()
-  .use(phone)                                    // compose phone's rube
-  .cast(Number, String)                          // cast a number to a string
-  .format(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3') // format phone number
-
-prettyphone('+(415) 324----5344', function(err, v) {
-  v // (415) 324-5344
+var schema = Rube({
+  email: Rube(String).assert(/@/),
+  name: Rube(String).between(5, 30),
+  accounts: Rube({
+    twitter: Rube(String).use(rtwitter),
+    gittip: Rube(String).between(5, 20)
+  })
 });
+
+schema({
+  name: 'matt mueller',
+  email: 'matt@lapwinglabs.com',
+  accounts: {
+    twitter: 'mattmueller',
+    gittip: 'matthewmueller'
+  }
+}, function(err, obj) { });
 ```
 
-## API
+## What about Joi?
+
+Joi was a major source of inspiration for Rube. Here are some differences between Rube and Joi:
+
+### Pros:
+
+- Rube is much leaner (20kb minified)
+- Rube works great in the browser
+- Rube support synchronous, asynchronous and generator validators
+- Rube has simpler syntax
+
+### Cons:
+
+- Joi has way more features
+- Joi has reference support
+- Joi has more tests
+
+## API (old, needs to be updated)
 
 ### Rube()
 
