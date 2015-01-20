@@ -53,13 +53,14 @@ Joi was a major source of inspiration for Rube. Here are some differences betwee
 
 - Rube is much leaner (20kb minified)
 - Rube works great in the browser
-- Rube support synchronous, asynchronous and generator validators
-- Rube has simpler syntax
+- Rube supports synchronous, asynchronous and generator validators
+- Rube has a simpler syntax
 
 ### Cons:
 
 - Joi has way more features
 - Joi has reference support
+- Joi supports arrays
 - Joi has more tests
 
 ## API (old, needs to be updated)
