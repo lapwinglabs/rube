@@ -59,8 +59,8 @@ Joi was a major source of inspiration for Rube. Here are some differences betwee
 ### Cons:
 
 - Joi has way more features
-- Joi has reference support
-- Joi supports arrays
+- Joi has reference support (seeking PRs for Rube)
+- Joi supports arrays (seeking PRs for Rube)
 - Joi has more tests
 
 ## API (old, needs to be updated)
