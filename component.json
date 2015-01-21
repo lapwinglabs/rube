@@ -10,6 +10,7 @@
     "eivindfjeldstad/typecast": "1.0.1",
     "component/assert": "0.5.0",
     "yields/fmt": "0.0.2",
-    "matthewmueller/wrap-fn": "0.1.x"
+    "matthewmueller/wrap-fn": "0.1.x",
+    "tj/node-only": "0.0.2"
   }
 }
