@@ -1,6 +1,8 @@
 
 # rube
 
+  Leaner, simpler and browser-compatible alternative to [Joi](https://github/hapijs/joi).
+
   A composable data validation, transformation & manipulation pipeline. Supports synchronous, asynchronous and generator functions. Proudly named after the [Rube Goldberg Machine](http://en.wikipedia.org/wiki/Rube_Goldberg_machine).
 
   ![rube goldberg machine](http://upload.wikimedia.org/wikipedia/commons/a/a6/Professor_Lucifer_Butts.gif)

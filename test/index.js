@@ -332,4 +332,31 @@ describe('Rube', function() {
       })
     })
   })
+
+  describe('Rube(any)', function() {
+    describe('.message(msg)', function() {
+
+      it('should provide a custom error message', function(done) {
+        var rube = Rube(String).between(5, 10).message('wrong length!');
+        rube('hi', function(err) {
+          assert(err)
+          assert('wrong length!' == err.message);
+          done();
+        });
+      });
+
+      it('should work with nested Rubes', function(done) {
+        var rube = Rube({
+          name: Rube(String).between(5, 10).message('wrong length!')
+        }).message('bad obj!');
+
+        rube({ name: 'matt' }, function(err) {
+          assert(err)
+          assert('bad obj!' == err.message);
+          done();
+        });
+      });
+
+    })
+  })
 });
