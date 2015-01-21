@@ -39,6 +39,23 @@ describe('Rube', function() {
           done();
         });
       });
+
+      it('should be immutable', function(done) {
+        var pending = 2;
+        var rube = Rube(String);
+
+        rube.between(1, 2)('a', function(err, v) {
+          assert(!err);
+          assert('a' == v);
+          if (!--pending) done();
+        });
+
+        rube('abc', function(err, v) {
+          assert(!err);
+          assert('abc' == v);
+          if (!--pending) done();
+        });
+      })
     });
 
     describe('.assert(expected)', function() {
@@ -293,6 +310,43 @@ describe('Rube', function() {
           done();
         });
       });
+
+      it('should be immutable', function(done) {
+        var pending = 2;
+        var rube = Rube({
+          name: Rube(String),
+          email: Rube(String),
+          accounts: Rube({
+            twitter: Rube(String),
+            facebook: Rube(String)
+          })
+        });
+
+        var some = {
+          name: 'matt',
+          email: 'matt@lapwinglabs.com'
+        };
+
+        rube.only('name email')(some, function(err, val) {
+          if (err) return done(err);
+          assert(!val.accounts);
+          if (!--pending) return done();
+        });
+
+        var obj = {
+          name: 'matt',
+          email: 'matt@lapwinglabs.com',
+          accounts: {
+            twitter: 'mattmueller'
+          }
+        }
+
+        rube(obj, function(err, val) {
+          if (err) return done(err);
+          assert(val.accounts);
+          if (!--pending) return done();
+        });
+      })
 
     });
   });

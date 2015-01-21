@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "batch": "^0.5.2",
+    "component-clone": "^0.2.2",
     "dot-prop": "^1.0.0",
     "only": "0.0.2",
     "sliced": "0.0.5",
