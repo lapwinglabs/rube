@@ -40,6 +40,15 @@ describe('Rube', function() {
         });
       });
 
+      it('should support .format(formatter, str)', function(done) {
+        var validate = Rube(String).format(/[^0-9\.]+/, '');
+        validate('abc1.30', function(err, v) {
+          if (err) return done(err);
+          assert('1.30' == v);
+          done();
+        })
+      })
+
       it('should be immutable', function(done) {
         var pending = 2;
         var rube = Rube(String);
@@ -385,6 +394,15 @@ describe('Rube', function() {
         if (!--pending) return done();
       })
     })
+
+    // it('should have the same properties as Rube(any)', function(done) {
+    //   var rube = Rube(String, Boolean).assert(true, 'it should be true');
+    //   rube(true, function(err, v) {
+    //     if (err) return done(err);
+    //     assert(v === true);
+    //     done();
+    //   })
+    // })
   })
 
   describe('Rube(any)', function() {
