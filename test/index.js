@@ -40,6 +40,16 @@ describe('Rube', function() {
         });
       });
 
+      it('should cast strings to numbers', function(done) {
+        var rube = Rube(String).cast(Number);
+        rube('5', function(err, v) {
+          if (err) return done(err);
+          assert(5 === v);
+          assert('number' == typeof v);
+          done();
+        })
+      })
+
       it('should support .format(formatter, str)', function(done) {
         var validate = Rube(String).format(/[^0-9\.]+/, '');
         validate('abc1.30', function(err, v) {
