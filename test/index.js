@@ -330,6 +330,19 @@ describe('Rube', function() {
         });
       })
 
+      // it('should throw because it\'s missing an attribute', function(done) {
+      //   var schema = Rube({
+      //     a: Rube(String),
+      //     b: Rube(String),
+      //     c: Rube(String)
+      //   }).or('a', 'b');
+
+      //   schema.only('c')({}, function(err, v) {
+      //     assert(err);
+      //     done();
+      //   });
+      // })
+
     });
 
     describe('.only(str)', function() {
