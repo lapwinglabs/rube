@@ -1,4 +1,9 @@
 
+1.1.2 / 2015-01-22
+==================
+
+  * relationships should only be compared if we're validating against those keys
+
 1.1.0 / 2015-01-20
 ==================
 
