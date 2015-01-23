@@ -19,7 +19,7 @@
     "dot-prop": "^1.0.0",
     "only": "0.0.2",
     "sliced": "0.0.5",
-    "step.js": "^2.0.5",
+    "step.js": "3.x",
     "type-component": "0.0.1",
     "typecast": "0.0.1",
     "wrap-fn": "^0.1.3"

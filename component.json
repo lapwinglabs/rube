@@ -5,7 +5,7 @@
     "tj/batch": "0.5.2",
     "sindresorhus/dot-prop": "^1.0.0",
     "aheckmann/sliced": "0.0.5",
-    "matthewmueller/step.js": "2.0.x",
+    "matthewmueller/step.js": "3.x",
     "component/type": "1.0.0",
     "eivindfjeldstad/typecast": "1.0.1",
     "component/assert": "0.5.0",

@@ -271,6 +271,20 @@ describe('Rube', function() {
         });
       });
 
+      it('should pass through if any of its properties are filtered out', function(done) {
+        var schema = Rube({
+          a: Rube(String),
+          b: Rube(String),
+          c: Rube(String)
+        }).or('a', 'b');
+
+        schema.only('c')({ c: 'c' }, function(err, v) {
+          if (err) return done(err);
+          assert(v.c == 'c');
+          done();
+        });
+      })
+
     });
 
     describe('.only(str)', function() {
