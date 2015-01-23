@@ -50,15 +50,6 @@ describe('Rube', function() {
         })
       })
 
-      it('should support .format(formatter, str)', function(done) {
-        var validate = Rube(String).format(/[^0-9\.]+/, '');
-        validate('abc1.30', function(err, v) {
-          if (err) return done(err);
-          assert('1.30' == v);
-          done();
-        })
-      })
-
       it('should be immutable', function(done) {
         var pending = 2;
         var rube = Rube(String);
@@ -92,6 +83,50 @@ describe('Rube', function() {
         });
       });
     });
+
+    describe('.format(str|fn|regex, str|fn)', function() {
+
+      it('should support functions', function(done) {
+        var validate = Rube(String).format(function(v) {
+          return v.split(' ');
+        });
+        validate('hello world', function(err, v) {
+          if (err) return done(err);
+          assert.deepEqual(v, ['hello', 'world']);
+          done();
+        })
+      })
+
+      it('should support .format(formatter, str)', function(done) {
+        var validate = Rube(String).format(/[^0-9\.]+/, '');
+        validate('abc1.30', function(err, v) {
+          if (err) return done(err);
+          assert('1.30' == v);
+          done();
+        })
+      })
+
+      it('should support regexp with strings', function(done) {
+        var validate = Rube(String).format(/\s+/, '_');
+        validate('hello world', function(err, v) {
+          if (err) return done(err);
+          assert.deepEqual(v, 'hello_world');
+          done();
+        })
+      })
+
+      it('should support regexp with functions', function(done) {
+        var validate = Rube(String).format(/\w+/g, function(m) {
+          return m[0] + 's';
+        });
+
+        validate('hello world', function(err, v) {
+          if (err) return done(err);
+          assert.equal(v, 'hellos worlds');
+          done();
+        })
+      })
+    })
 
     describe('.use(fn)', function() {
       it('should support custom sync functions', function(done) {
