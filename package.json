@@ -22,6 +22,7 @@
     "step.js": "3.x",
     "type-component": "0.0.1",
     "typecast": "0.0.1",
+    "vo": "^1.0.2",
     "wrap-fn": "^0.1.3"
   },
   "devDependencies": {
