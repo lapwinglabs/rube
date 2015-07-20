@@ -12,6 +12,9 @@ test-browser: build/build.js
 
 dist: components dist-build dist-minify
 
+browserify:
+	@./node_modules/.bin/browserify index.js > out.js
+
 dist-build:
 	@mkdir -p dist/
 	@duo -g Rube --stdout index.js > dist/rube.js

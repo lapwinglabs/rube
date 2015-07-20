@@ -14,7 +14,7 @@
     "url": "git://github.com/lapwinglabs/rube.git"
   },
   "dependencies": {
-    "batch": "^0.5.2",
+    "batch": "matthewmueller/batch#3d6a322",
     "component-clone": "^0.2.2",
     "dot-prop": "^1.0.0",
     "only": "0.0.2",
@@ -24,7 +24,14 @@
     "typecast": "0.0.1",
     "wrap-fn": "^0.1.3"
   },
+  "browser": {
+    "type": "type-component",
+    "clone": "component-clone",
+    "node-only": "only",
+    "fmt": "util"
+  },
   "devDependencies": {
+    "browserify": "^11.0.0",
     "mocha": "*"
   },
   "main": "index"
