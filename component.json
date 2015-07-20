@@ -1,6 +1,6 @@
 {
   "name": "rube",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "dependencies": {
     "tj/batch": "0.5.2",
     "sindresorhus/dot-prop": "^1.0.0",
