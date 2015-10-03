@@ -14,7 +14,7 @@
     "url": "git://github.com/lapwinglabs/rube.git"
   },
   "dependencies": {
-    "batch": "matthewmueller/batch#3d6a322",
+    "batch": "^0.5.3",
     "component-clone": "^0.2.2",
     "dot-prop": "^1.0.0",
     "only": "0.0.2",
