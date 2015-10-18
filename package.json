@@ -16,7 +16,7 @@
   "dependencies": {
     "batch": "^0.5.3",
     "component-clone": "^0.2.2",
-    "dot-prop": "^1.0.0",
+    "dot-prop": "2.2.0",
     "only": "0.0.2",
     "sliced": "0.0.5",
     "step.js": "3.x",
